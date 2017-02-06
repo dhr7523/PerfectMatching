@@ -25,3 +25,16 @@ def SquareLattice(n,m)
 	end
 	return graph
 end
+
+def Cube(n)
+	if n==1
+		return [[0,1]]
+	else
+		graph = Cube(n-1)
+		graph=graph.concat(graph.map{|e|[e[0]+2**(n-1),e[1]+2**(n-1)]})
+		for i in 0...2**(n-1)
+			graph << [i,i+2**(n-1)]
+		end
+		return graph
+	end
+end
