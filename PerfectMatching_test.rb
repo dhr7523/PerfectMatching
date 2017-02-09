@@ -1,5 +1,5 @@
 require_relative "PerfectMatching"
-require_relative "Graph"
+require_relative "Generator"
 
 #Ladder type diagram.
 #One can easily see that the results coincide with the Fibonacci sequence.
