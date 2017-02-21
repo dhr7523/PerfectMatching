@@ -34,15 +34,18 @@ class Graph < Array
 		if i=self.index{|e| e and e.length==1}
 			j=self[i][0]
 			self[j].each{|k|
-				if self[k].length==1
-					self[k]=nil
+				if k!=i and self[k].length==1
+					return false
 				else
 					self[k].delete(j)
 				end
 			}
-			self[j]=nil
 			self[i]=nil
-			self.cut_off!
+			self[j]=nil
+			unless self.cut_off!
+				return false
+			end
 		end
+		return true
 	end
 end

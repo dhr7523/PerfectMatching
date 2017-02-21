@@ -5,12 +5,15 @@ require_relative "Generator"
 require_relative "PerfectMatching"
 require "benchmark"
 
-n=5
-g=Cube(n)
+n=4
+m=7
+#g=Cube(n)
+#g=AztecDiamond(n)
+g=SquareLattice(n,m)
 
 Benchmark.bm 10 do |r|
 	r.report "zero" do
-#		p PerfectMatching(g)
+		p PerfectMatching(g)
 	end
 	g=g.to_graph
 	r.report "mark2" do

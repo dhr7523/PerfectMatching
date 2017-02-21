@@ -1,6 +1,6 @@
 def PerfectMatching_mark2(graph_)
 	graph = Marshal.load(Marshal.dump(graph_))
-	graph.cut_off!
+	return 0 unless graph.cut_off!
 
 	if graph.all? {|e| !e} then
 		return 1
@@ -17,15 +17,16 @@ def PerfectMatching_mark2(graph_)
 		num+=PerfectMatching_mark2(graph)
 
 		#case in which the edge is used for matching.
-		graph[i].each{|k| graph[k].delete(i)}
-		graph[j].each{|k| graph[k].delete(j)}
-		graph[i]=nil
-		graph[j]=nil
+		unless graph.include?([i,j])
+			graph[i].each{|k| graph[k].delete(i)}
+			graph[j].each{|k| graph[k].delete(j)}
+			graph[i]=nil
+			graph[j]=nil
 
-		num+=PerfectMatching_mark2(graph)
+			num+=PerfectMatching_mark2(graph)
+		end
 
 		return num
 
 	end
 end
-
